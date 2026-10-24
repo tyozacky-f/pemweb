@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>about-me</title>
+    <style>
+        :root { --navy: #081c2c; --navy-light: #12344a; --cream: #f8fafc; --ink: #102a43; --muted: #627d98; --accent: #f4b942; --accent-dark: #d89614; --line: #d9e2ec; --shadow: 0 24px 70px rgba(2, 12, 27, 0.32); }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: radial-gradient(circle at 15% 15%, rgba(244, 185, 66, 0.16), transparent 28%), linear-gradient(135deg, var(--navy-light), var(--navy) 68%); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+        .page { width: min(100%, 980px); max-height: calc(100vh - 64px); overflow: auto; padding: clamp(24px, 5vw, 48px); background: var(--cream); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 22px; box-shadow: var(--shadow); }
+        h1, h2, h3 { margin: 0 0 18px; color: var(--navy); line-height: 1.2; }
+        p, li { color: var(--ink); }
+        p { margin: 0 0 14px; }
+        ul, ol { padding-left: 24px; margin: 0 0 24px; }
+        li { padding: 3px 0; }
+        a { color: var(--accent-dark); }
+        table { width: 100%; border-collapse: collapse; background: #fff; text-align: center; }
+        th, td { padding: 10px 12px; border: 1px solid var(--line); }
+        th { background: var(--navy-light); color: #fff; }
+        caption { padding: 12px; color: var(--navy); font-weight: 800; }
+        img { max-width: 100%; }
+        hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
+        input, select, textarea { max-width: 100%; padding: 10px 12px; border: 1px solid #bcccdc; border-radius: 8px; font: inherit; }
+        input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+        .topbar {
+            width: min(100%, 1100px);
+            margin: 0 auto 18px;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 28px rgba(2, 12, 27, 0.18);
+        }
+        .topbar .menu {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+        }
+        .topbar a {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 9px 14px; border-radius: 10px; color: #fff; text-decoration: none;
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+            border: 1px solid transparent; transition: all 0.2s ease;
+        }
+        .topbar a:hover, .topbar a:focus-visible { background: rgba(244, 185, 66, 0.18); border-color: rgba(244, 185, 66, 0.45); outline: none; }
+        .topbar a.active { background: var(--accent); color: var(--navy); border-color: var(--accent); }
+        .page {
+            animation: pageIn 0.7s ease both;
+        }
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .topbar {
+            animation: navIn 0.8s ease 0.15s both;
+        }
+        @keyframes navIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .topbar a {
+            position: relative; overflow: hidden;
+        }
+        .topbar a::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(244,185,66,0.18), transparent 50%, rgba(255,255,255,0.08));
+            transform: translateX(-100%);
+            transition: transform 0.45s ease;
+        }
+        .topbar a:hover::before, .topbar a:focus-visible::before { transform: translateX(100%); }
+        @media (max-width: 600px) { body { padding: 18px 12px; } .page { max-height: calc(100vh - 36px); border-radius: 16px; } .topbar { padding: 12px 10px; } .topbar a { font-size: 0.7rem; padding: 8px 10px; } }
+    </style>
+</head>
+<body>
+    <nav class="topbar" aria-label="Navigasi halaman utama">
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="about-me.html" class="active">About Me</a>
+            <a href="hobi.html">Hobi</a>
+            <a href="educations.html">Education</a>
+            <a href="course-schedule.html">Schedule</a>
+            <a href="tabel 1.html">Table 1</a>
+            <a href="tabel2.html">Table 2</a>
+            <a href="tabel3.html">Table 3</a>
+            <a href="form.html">Form</a>
+        </div>
+    </nav>
+        
+    <main class="page">
+    <h2>Tentang Saya</h2>
+    <p>saya memiliki ketertarikan pada pengembangan aplikasi web,</p> 
+    <p>saat ini saya sedang belajar mebuat web menggunakan HTML.</p>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>MySQL</li>
+    </ul>
+    <h2>Target belajar</h2>
+    <ol type="A">
+        <li>Memahami HTML</li>
+        <li>Memahami CSS</li>
+        <li>Memahami  JavaScript</li>
+        <li>Membuat websitesederhana</li>
+    </ol>
+    </main>
+  <style>
+    #page-curtain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      background: rgba(6, 24, 39, 0.08);
+      transition: opacity 0.35s ease;
+    }
+
+    #page-curtain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(244, 185, 66, 0.22), transparent 48%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #page-curtain.is-showing {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #page-curtain.is-showing::before {
+      opacity: 1;
+    }
+
+    #page-curtain .curtain-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 52%;
+      background: linear-gradient(135deg, rgba(6, 24, 39, 0.98), rgba(13, 44, 67, 0.96) 42%, rgba(244, 185, 66, 0.92) 140%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
+      filter: saturate(1.15) brightness(1.04);
+    }
+
+    #page-curtain .curtain-panel.left {
+      left: -8%;
+      transform: translateX(-120%) skewX(-12deg);
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #page-curtain .curtain-panel.right {
+      right: -8%;
+      transform: translateX(120%) skewX(12deg);
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #page-curtain.is-showing .curtain-panel.left,
+    #page-curtain.is-showing .curtain-panel.right {
+      transform: translateX(0) skewX(0deg);
+    }
+  </style>
+
+  <script>
+    (() => {
+      const curtain = document.createElement('div');
+      curtain.id = 'page-curtain';
+      curtain.setAttribute('aria-hidden', 'true');
+      curtain.innerHTML = '<span class="curtain-panel left"></span><span class="curtain-panel right"></span>';
+      document.body.appendChild(curtain);
+
+      document.querySelectorAll('a[href]').forEach((link) => {
+        if (link.dataset.pageTransitionBound === 'true') return;
+        link.dataset.pageTransitionBound = 'true';
+
+        link.addEventListener('click', (event) => {
+          const href = link.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+          const target = new URL(href, window.location.href);
+          if (target.origin !== window.location.origin) return;
+
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.location.href = href;
+            return;
+          }
+
+          event.preventDefault();
+          document.body.style.pointerEvents = 'none';
+          curtain.classList.add('is-showing');
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 780);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

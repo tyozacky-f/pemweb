@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rekap Nilai Siswa</title>
+  <style>
+    :root { --navy: #081c2c; --navy-light: #12344a; --cream: #f8fafc; --ink: #102a43; --muted: #627d98; --accent: #f4b942; --accent-dark: #d89614; --line: #d9e2ec; --shadow: 0 24px 70px rgba(2, 12, 27, 0.32); }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: radial-gradient(circle at 15% 15%, rgba(244, 185, 66, 0.16), transparent 28%), linear-gradient(135deg, var(--navy-light), var(--navy) 68%); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    .page { width: min(100%, 1100px); max-height: calc(100vh - 64px); overflow: auto; padding: clamp(20px, 4vw, 40px); background: var(--cream); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 22px; box-shadow: var(--shadow); }
+    table { background: #fff; }
+    .table-wrap { max-width: 100%; margin: 0 auto; overflow-x: auto; }
+    .nilai { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; text-align: center; }
+    .nilai th, .nilai td { border: 1px solid #c9d1da; padding: 10px 8px; vertical-align: middle; }
+    .nilai thead th { background: #2b5d8c; color: #fff; font-weight: bold; }
+    .nilai thead tr.sub th { background: #4a86bd; }
+    .nilai td.nama { font-weight: bold; width: 90px; background: #fff; }
+    .nilai td.s1 { background: #eaf4fc; }
+    .nilai td.s2 { background: #eefaee; }
+    .nilai td.lulus { color: #2e7d32; font-weight: bold; }
+    .nilai td.remedial { color: #c62828; font-weight: bold; }
+    .nilai td.catatan { text-align: left; padding: 10px 12px; min-width: 230px; }
+    .nilai tfoot td { background: #f1f1f1; font-weight: bold; }
+    .hadir { width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; }
+    .hadir th, .hadir td { border: 1px solid #c9d1da; padding: 4px 6px; }
+    .hadir th { background: #2b5d8c; color: #fff; }
+    .hadir td { background: #fff; }
+    .topbar {
+        width: min(100%, 1100px);
+        margin: 0 auto 18px;
+        padding: 14px 18px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 28px rgba(2, 12, 27, 0.18);
+    }
+    .topbar .menu {
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    }
+    .topbar a {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 9px 14px; border-radius: 10px; color: #fff; text-decoration: none;
+        font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+        border: 1px solid transparent; transition: all 0.2s ease;
+    }
+    .topbar a:hover, .topbar a:focus-visible { background: rgba(244, 185, 66, 0.18); border-color: rgba(244, 185, 66, 0.45); outline: none; }
+    .topbar a.active { background: var(--accent); color: var(--navy); border-color: var(--accent); }
+    .page {
+        animation: pageIn 0.7s ease both;
+    }
+    @keyframes pageIn {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .topbar {
+        animation: navIn 0.8s ease 0.15s both;
+    }
+    @keyframes navIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .topbar a {
+        position: relative; overflow: hidden;
+    }
+    .topbar a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(244,185,66,0.18), transparent 50%, rgba(255,255,255,0.08));
+        transform: translateX(-100%);
+        transition: transform 0.45s ease;
+    }
+    .topbar a:hover::before, .topbar a:focus-visible::before { transform: translateX(100%); }
+    @media (max-width: 600px) { body { padding: 18px 12px; } .page { max-height: calc(100vh - 36px); border-radius: 16px; } .nilai { min-width: 850px; } .topbar { padding: 12px 10px; } .topbar a { font-size: 0.7rem; padding: 8px 10px; } }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Navigasi halaman utama">
+      <div class="menu">
+          <a href="index.html">Home</a>
+          <a href="profile.html">Profile</a>
+          <a href="about-me.html">About Me</a>
+          <a href="hobi.html">Hobi</a>
+          <a href="educations.html">Education</a>
+          <a href="course-schedule.html">Schedule</a>
+          <a href="tabel 1.html">Table 1</a>
+          <a href="tabel2.html">Table 2</a>
+          <a href="tabel3.html" class="active">Table 3</a>
+          <a href="form.html">Form</a>
+      </div>
+  </nav>
+  <main class="page">
+  <div class="table-wrap">
+    <table class="nilai">
+      <thead>
+        <tr>
+          <th rowspan="2" class="nama-col">Nama</th>
+          <th colspan="3">Semester 1</th>
+          <th colspan="3">Semester 2</th>
+          <th rowspan="2">Keterangan</th>
+          <th rowspan="2">Catatan Kehadiran</th>
+        </tr>
+        <tr class="sub">
+          <th>Tugas</th><th>UTS</th><th>UAS</th>
+          <th>Tugas</th><th>UTS</th><th>UAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="nama">Tyo zacky fauzan</td>
+          <td class="s1">85</td><td class="s1">80</td><td class="s1">88</td>
+          <td class="s2">90</td><td class="s2">85</td><td class="s2">92</td>
+          <td class="lulus">Lulus</td>
+          <td class="catatan">
+            <table class="hadir">
+              <thead>
+                <tr><th>Bulan</th><th>Hadir</th><th>Izin</th><th>Alpa</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Agustus</td><td>14</td><td>1</td><td>0</td></tr>
+                <tr><td>September</td><td>13</td><td>0</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="nama">Rio riki</td>
+          <td class="s1">60</td><td class="s1">55</td><td class="s1">58</td>
+          <td class="s2">65</td><td class="s2">60</td><td class="s2">62</td>
+          <td class="remedial">Remedial</td>
+          <td class="catatan">Sering terlambat</td>
+        </tr>
+        <tr>
+          <td class="nama">Fabio</td>
+          <td class="s1">92</td><td class="s1">90</td><td class="s1">95</td>
+          <td class="s2">94</td><td class="s2">91</td><td class="s2">96</td>
+          <td class="lulus">Lulus</td>
+          <td class="catatan">Mahasiswa berprestasi</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="nama">Rata-rata Kelas</td>
+          <td colspan="3">75,7</td>
+          <td colspan="3">79,8</td>
+          <td colspan="2">77,8 (keseluruhan)</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  </main>
+  <style>
+    #page-curtain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      background: rgba(6, 24, 39, 0.08);
+      transition: opacity 0.35s ease;
+    }
+
+    #page-curtain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(244, 185, 66, 0.22), transparent 48%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #page-curtain.is-showing {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #page-curtain.is-showing::before {
+      opacity: 1;
+    }
+
+    #page-curtain .curtain-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 52%;
+      background: linear-gradient(135deg, rgba(6, 24, 39, 0.98), rgba(13, 44, 67, 0.96) 42%, rgba(244, 185, 66, 0.92) 140%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
+      filter: saturate(1.15) brightness(1.04);
+    }
+
+    #page-curtain .curtain-panel.left {
+      left: -8%;
+      transform: translateX(-120%) skewX(-12deg);
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #page-curtain .curtain-panel.right {
+      right: -8%;
+      transform: translateX(120%) skewX(12deg);
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #page-curtain.is-showing .curtain-panel.left,
+    #page-curtain.is-showing .curtain-panel.right {
+      transform: translateX(0) skewX(0deg);
+    }
+  </style>
+
+  <script>
+    (() => {
+      const curtain = document.createElement('div');
+      curtain.id = 'page-curtain';
+      curtain.setAttribute('aria-hidden', 'true');
+      curtain.innerHTML = '<span class="curtain-panel left"></span><span class="curtain-panel right"></span>';
+      document.body.appendChild(curtain);
+
+      document.querySelectorAll('a[href]').forEach((link) => {
+        if (link.dataset.pageTransitionBound === 'true') return;
+        link.dataset.pageTransitionBound = 'true';
+
+        link.addEventListener('click', (event) => {
+          const href = link.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+          const target = new URL(href, window.location.href);
+          if (target.origin !== window.location.origin) return;
+
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.location.href = href;
+            return;
+          }
+
+          event.preventDefault();
+          document.body.style.pointerEvents = 'none';
+          curtain.classList.add('is-showing');
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 780);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
